@@ -1,4 +1,4 @@
-var num10 = 1234; //Используйте 'use scrict', для чего описано в этой статье https://learn.javascript.ru/strict-mode. Для обьявления переменных используйте let или const.
+var num10 = 1234; //Используйте 'use scrict', для чего описано в этой статье https://learn.javascript.ru/strict-mode. Для обьявления переменных используйте let или const. Перенесите эту переменную в конец функции
 function toHex(num10) { //toHex => convertDecToHex
     let num16 = '';
     for (let i = num10; i > 0; ) { //Делайте пропуск строки для выделение отдельных блоков кода.
