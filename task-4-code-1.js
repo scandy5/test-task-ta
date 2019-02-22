@@ -40,7 +40,7 @@ function toHex(num10) { //toHex => convertDecToHex
     }
     var revurse = ''; //let или const вместо var
     if (num16 === '') return '';  //Пишите фигурные скобки в if для улучшения читаемости кода.
-    else { 
+    else { //Если в операторе if есть return, то нет необходимости в else
         for (let j = num16.length; j >= 0; j--) {
             revurse += num16.charAt(j);
         }
