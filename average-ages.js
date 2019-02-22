@@ -42,93 +42,30 @@ const people = [
 	{ "name": "Jacobus Bernardus van Brussel", "sex": "m", "born": 1736, "died": 1809, "father": "Jan van Brussel", "mother": "Elisabeth Haverbeke" }
 ];
 
-
-/**
- * Возвращает средний возраст мужчин в массиве
- * Если передан `century` то только живших в указанном столетии
- * беря их год смерти, деля его на 100 и округляя: Math.ceil(person.died / 100)
- *
- * @param {object[]} people
- * @param {number} century - optional
- *
- * @return {number}
- */
 function calculateMenAverageAge(people, century) {
-	// Потренируйтесь работать с методами массивов
-	// .filter .map .some .every .find .reduce
-	// используйте их по назначению
-	// избегайте циклов и перебора .forEach
-	// if () замените на логические операторы или ?: (без вложенности)
+	let men = people.filter(person => person.sex === 'm'); // в одну строку будет не хуже
 
-	let men = people.filter((person) => {
-		return person.sex === 'm'
-	});
+	if (century) { // не стоит использовать тернарник вместо if
+		men = men.filter(person => century === Math.ceil(person.died / 100))
+	}
 
-	century
-		?
-		men = men.filter((person) => {
-			return century === Math.ceil(person.died / 100);
-		})
-		:
-		men
-
-	let ageOfMen = men.map((person) => {
-		return person.died - person.born
-	});
-
-	let avarageAgeOfMen = ageOfMen.reduce((a, b) => {
-		return (a + b)
-	}) / ageOfMen.length;
+	let avarageAgeOfMen = men.map(person => person.died - person.born).reduce((a, b) => (a + b)) / men.length;;
 
 	return avarageAgeOfMen
 }
 
-/**
- * Возвращает средний возраст Женщин в массиве
- * Если передан `withChildren` то только тех у которых есть дети в массиве
- *
- * @param {object[]} people
- * @param {boolean} withChildren - optional
- *
- * @return {number}
- */
 function calculateWomenAverageAge(people, withChildren) {
-	let women = people.filter((person) => {
-		return person.sex === 'f'
-	});
+	let women = people.filter(person => person.sex === 'f');
 
-	withChildren
-		?
-		women = people.filter((person) => people.some((child) => {
-			return child.mother === person.name
-		}))
-		:
-		women
+	if (withChildren) {
+		women = people.filter(person => people.some(child => child.mother === person.name));
+	}
 
-	let ageOfWomen = women.map((person) => {
-		return person.died - person.born
-	});
-
-	let avarageAgeOfWomen = ageOfWomen.reduce((a, b) => {
-		return (a + b)
-	}) / ageOfWomen.length;
+	let avarageAgeOfWomen = women.map(person => person.died - person.born).reduce((a, b) => (a + b)) / women.length;
 
 	return avarageAgeOfWomen
 }
 
-/**
- * Возвращает среднюю разницу в возрасте
- * (год рождения ребёнка - год рождения матери)
- * между всеми матерями и их детьми,
- * которые есть в массиве
- *
- * Если передан `onlyWithSon` то только тех у которых сын
- *
- * @param {object[]} people
- * @param {boolean} withChildren - optional
- *
- * @return {number}
- */
 function calculateAverageAgeDiff(people, onlyWithSon) {
 	let arrayOfDifferences = [];
 
@@ -136,11 +73,11 @@ function calculateAverageAgeDiff(people, onlyWithSon) {
 		if (child.mother === null) {
 			return;
 		}
-		people.forEach(function (mother) {
+		people.forEach(function (mother) { // цикл в цикле тут не нужен есть методы перебора
 			if (mother.name === child.mother) {
 				if (onlyWithSon !== undefined) {
 					if (child.sex === "m") {
-						arrayOfDifferences.push((child.born - mother.born));
+						arrayOfDifferences.push((child.born - mother.born)); // эта огромная вложенноть не годится
 					}
 				} else {
 					arrayOfDifferences.push((child.born - mother.born));
@@ -148,7 +85,7 @@ function calculateAverageAgeDiff(people, onlyWithSon) {
 			}
 		})
 	})
-	
+
 	return arrayOfDifferences.reduce((a, b) => a + b) / arrayOfDifferences.length;
 }
 
