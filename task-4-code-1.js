@@ -1,5 +1,5 @@
 var num10 = 1234; //Используйте 'use scrict', для чего описано в этой статье https://learn.javascript.ru/strict-mode. Для обьявления переменных используйте let или const.
-function toHex(num10) {
+function toHex(num10) { //toHex => convertDecToHex
     let num16 = '';
     for (let i = num10; i > 0; ) { //Делайте пропуск строки для выделение отдельных блоков кода.
         switch (i % 16) {
