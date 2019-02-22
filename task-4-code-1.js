@@ -1,7 +1,7 @@
 var num10 = 1234; //Используйте 'use scrict', для чего описано в этой статье https://learn.javascript.ru/strict-mode. Для обьявления переменных используйте let или const.
 function toHex(num10) {
     let num16 = '';
-    for (let i = num10; i > 0; ) { //Выносите объявление переменной за цикл for
+    for (let i = num10; i > 0; ) { //Делайте пропуск строки для выделение отдельных блоков кода.
         switch (i % 16) {
             case 10:
                 {
@@ -48,5 +48,5 @@ function toHex(num10) {
     }
 }
 
-var z = toHex(num10); 
+var z = toHex(num10); //Не называйте переменные одной буквой, кроме случаев с циклами.
 console.log(z);
