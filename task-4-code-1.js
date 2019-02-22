@@ -38,7 +38,7 @@ function toHex(num10) {
         i = i / 16;
         i = Math.trunc(i); //Строку выше можно обьеденить с этой.
     }
-    var revurse = '';
+    var revurse = ''; //let или const вместо var
     if (num16 === '') return '';  //Пишите фигурные скобки в if для улучшения читаемости кода.
     else { 
         for (let j = num16.length; j >= 0; j--) {
