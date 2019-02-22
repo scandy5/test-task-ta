@@ -5,7 +5,7 @@ function toHex(num10) {
         switch (i % 16) {
             case 10:
                 {
-                    num16 += 'a';
+                    num16 += 'a'; //Заносите break в фигурные скобки и пишите код в одном стиле как вы увидите ниже...
                 }
                 break;
             case 11:
@@ -28,7 +28,7 @@ function toHex(num10) {
                     num16 += 'e';
                 }
                 break;
-            case 15: {
+            case 15: { //...Вот тут
                 num16 += 'f';
             }
             default: {
