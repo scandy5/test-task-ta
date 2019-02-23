@@ -70,20 +70,13 @@ function calculateAverageAgeDiff(people, onlyWithSon) {
 	let arrayOfDifferences = [];
 
 	people.forEach(function (child) {
-		if (child.mother === null) {
-			return;
-		}
-		people.forEach(function (mother) { // цикл в цикле тут не нужен есть методы перебора
-			if (mother.name === child.mother) {
-				if (onlyWithSon !== undefined) {
-					if (child.sex === "m") {
-						arrayOfDifferences.push((child.born - mother.born)); // эта огромная вложенноть не годится
-					}
-				} else {
-					arrayOfDifferences.push((child.born - mother.born));
-				}
-			}
-		})
+		people
+			.filter(function (mother) { // цикл в цикле тут не нужен есть методы перебора
+				return mother.name === child.mother && (!onlyWithSon || (onlyWithSon && child.sex === "m"));
+			})
+			.forEach((mother) => {
+				arrayOfDifferences.push(child.born - mother.born); // эта огромная вложенноть не годится
+			});
 	})
 
 	return arrayOfDifferences.reduce((a, b) => a + b) / arrayOfDifferences.length;
